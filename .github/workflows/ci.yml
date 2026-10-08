@@ -1,0 +1,93 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  # Called by upstream.yml to test against the latest YAML extension and language server.
+  workflow_call:
+    inputs:
+      latest:
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+env:
+  # The YAML extension must provide the hover transformer API. Use redhat-developer/vscode-yaml once it does.
+  VSCODE_YAML_REPOSITORY: rjoussen/vscode-yaml
+  VSCODE_YAML_REF: add-hover-transformer-api
+  LATEST: ${{ inputs.latest == true }}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: vscode-yaml-math-hovers
+    steps:
+      # Check out both extensions side by side, where the tests expect the YAML extension.
+      - uses: actions/checkout@v4
+        with:
+          path: vscode-yaml-math-hovers
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ env.LATEST == 'true' && 'redhat-developer/vscode-yaml' || env.VSCODE_YAML_REPOSITORY }}
+          ref: ${{ env.LATEST == 'true' && 'main' || env.VSCODE_YAML_REF }}
+          path: vscode-yaml
+          fetch-depth: 0
+      # A conflict means that the hover transformer API needs a rebase onto the latest YAML extension.
+      - name: Merge the hover transformer API into the latest YAML extension
+        if: env.LATEST == 'true'
+        working-directory: vscode-yaml
+        run: |
+          git fetch "https://github.com/$VSCODE_YAML_REPOSITORY" "$VSCODE_YAML_REF"
+          git -c user.name=CI -c user.email=ci@localhost merge --no-edit FETCH_HEAD
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            vscode-yaml-math-hovers/package-lock.json
+            vscode-yaml/package-lock.json
+
+      - name: Build the YAML extension
+        working-directory: vscode-yaml
+        run: |
+          npm ci
+          # The YAML extension's own CI also tests with the latest language server.
+          if [ "$LATEST" = true ]; then npm install yaml-language-server@next; fi
+          npm run compile
+          npm run copy-l10n
+
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npx prettier --check .
+      - run: npm run test:unit
+      - name: Check that the hover images display in Chromium
+        run: npm run test:images
+      - name: Upload the gallery of fixture hovers
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gallery
+          path: vscode-yaml-math-hovers/out/images/gallery.html
+          if-no-files-found: ignore
+      - name: Run the integration tests in VS Code
+        run: xvfb-run -a npm run test:integration
+      - name: Run the integration tests in the oldest supported VS Code
+        run: |
+          export VSCODE_VERSION=$(node -p "require('./package.json').engines.vscode.replace(/^\\^/, '')")
+          xvfb-run -a npm run test:integration
+      - name: Run the integration tests in VS Code for the Web
+        run: |
+          mkdir -p test/web/extensions
+          rsync -a --exclude node_modules --exclude .git ../vscode-yaml/ test/web/extensions/vscode-yaml/
+          npm run test:web
+
+      - run: npx vsce package --allow-missing-repository
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vsix
+          path: vscode-yaml-math-hovers/*.vsix

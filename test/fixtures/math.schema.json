@@ -1,0 +1,129 @@
+{
+  "type": "object",
+  "properties": {
+    "energy": {
+      "type": "number",
+      "markdownDescription": "Energy $E = mc^2$, chemistry $\\ce{2H2 + O2 -> 2H2O}$ and $$E = \\frac{1}{2}mv^2$$. Keep `$HOME$` and [reference](https://example.com/$x$). Following prose."
+    },
+    "ratio": {
+      "type": "number",
+      "description": "Ratio $\\frac{1}{2}$ (exact) [unitless]. Following plain prose."
+    },
+    "mode": {
+      "type": "number",
+      "description": "Mode (default: fast) [deprecated]. Following text without math."
+    },
+    "maxwell": {
+      "type": "number",
+      "description": "Renders: Maxwell's equations in an aligned display.\n\n$$\n\\begin{aligned} \\nabla \\cdot \\mathbf{E} &= \\frac{\\rho}{\\varepsilon_0} \\\\ \\nabla \\cdot \\mathbf{B} &= 0 \\\\ \\nabla \\times \\mathbf{E} &= -\\frac{\\partial \\mathbf{B}}{\\partial t} \\\\ \\nabla \\times \\mathbf{B} &= \\mu_0 \\mathbf{J} + \\mu_0 \\varepsilon_0 \\frac{\\partial \\mathbf{E}}{\\partial t} \\end{aligned}\n$$"
+    },
+    "navierStokes": {
+      "type": "number",
+      "description": "Renders: the momentum equation $\\rho\\left(\\frac{\\partial \\mathbf{u}}{\\partial t} + (\\mathbf{u}\\cdot\\nabla)\\mathbf{u}\\right) = -\\nabla p + \\mu\\nabla^2\\mathbf{u} + \\mathbf{f}$ inline, with incompressibility $\\nabla\\cdot\\mathbf{u} = 0$."
+    },
+    "hooke": {
+      "type": "number",
+      "description": "Renders: Hooke's law $\\boldsymbol{\\sigma} = \\lambda\\,\\mathrm{tr}(\\boldsymbol{\\varepsilon})\\,\\mathbf{I} + 2\\mu\\,\\boldsymbol{\\varepsilon} = \\mathbb{C} : \\boldsymbol{\\varepsilon}$ and the weak form $$\\int_\\Omega \\boldsymbol{\\sigma} : \\nabla \\mathbf{v} \\,\\mathrm{d}\\Omega = \\int_\\Omega \\mathbf{b} \\cdot \\mathbf{v} \\,\\mathrm{d}\\Omega + \\int_{\\Gamma_N} \\bar{\\mathbf{t}} \\cdot \\mathbf{v} \\,\\mathrm{d}\\Gamma$$ in a centered block."
+    },
+    "stiffnessMatrix": {
+      "type": "number",
+      "description": "Renders: a 6 by 6 matrix and a determinant.\n\n$$\n\\mathbf{K} = \\begin{bmatrix}a_{00} & a_{01} & a_{02} & a_{03} & a_{04} & a_{05} \\\\ a_{10} & a_{11} & a_{12} & a_{13} & a_{14} & a_{15} \\\\ a_{20} & a_{21} & a_{22} & a_{23} & a_{24} & a_{25} \\\\ a_{30} & a_{31} & a_{32} & a_{33} & a_{34} & a_{35} \\\\ a_{40} & a_{41} & a_{42} & a_{43} & a_{44} & a_{45} \\\\ a_{50} & a_{51} & a_{52} & a_{53} & a_{54} & a_{55}\\end{bmatrix}, \\quad \\det\\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix} = ad - bc\n$$"
+    },
+    "piecewise": {
+      "type": "number",
+      "description": "Renders: a piecewise yield function $$f(\\sigma) = \\begin{cases} \\lvert\\sigma\\rvert - \\sigma_y & \\text{if } \\lvert\\sigma\\rvert > \\sigma_y, \\\\ 0 & \\text{otherwise.} \\end{cases}$$"
+    },
+    "macros": {
+      "type": "number",
+      "description": "Renders: a macro defined in this description, $\\newcommand{\\norm}[1]{\\left\\lVert #1 \\right\\rVert}\\norm{\\mathbf{u}}_2$, and used again in $\\norm{\\nabla p}$."
+    },
+    "labels": {
+      "type": "number",
+      "description": "Renders: a tagged equation and a reference to it.\n\n$$\nr = \\|\\mathbf{f}_{\\text{int}} - \\mathbf{f}_{\\text{ext}}\\| \\tag{R} \\label{residual}\n$$\n\nThe residual $\\eqref{residual}$ must vanish."
+    },
+    "chemistry": {
+      "type": "number",
+      "description": "Renders: $\\ce{CO2 + C -> 2 CO}$, the equilibrium $\\ce{N2 + 3H2 <=> 2NH3}$ and $\\ce{SO4^2- + Ba^2+ -> BaSO4 v}$."
+    },
+    "physics": {
+      "type": "number",
+      "description": "Renders: the physics package with $\\dv{f}{x}$, $\\pdv[2]{u}{x}$, $\\abs{\\psi}^2$ and $\\braket{\\phi}{\\psi}$."
+    },
+    "diagram": {
+      "type": "number",
+      "description": "Renders: a commutative diagram.\n\n$$\n\\begin{CD} A @>f>> B \\\\ @VgVV @VVhV \\\\ C @>>k> D \\end{CD}\n$$"
+    },
+    "longInline": {
+      "type": "number",
+      "description": "Renders: a long inline equation as one image, $a_1 + a_2 + a_3 + a_4 + a_5 + a_6 + a_7 + a_8 = b_1 + b_2 + b_3 + b_4 + b_5 + b_6 + b_7 + b_8 = c$, without breaking it."
+    },
+    "padded": {
+      "type": "number",
+      "description": "Renders: padded TeX, tolerance $ \\epsilon_{r} $ used for $ 1 \\ge \\overline{x}^{(\\text{max})} / R \\ge 1 - \\epsilon_{r} $ (ratio: $ r = 1/2 $)."
+    },
+    "vonMises": {
+      "type": "number",
+      "description": "Renders: the von Mises stress in a display equation over several lines.\n$$\n\\sigma_{\\mathrm{eq}} = \\sqrt{\\tfrac{3}{2}\\, \\mathbf{s} : \\mathbf{s}}\n$$\nwhere s is the deviatoric stress."
+    },
+    "sets": {
+      "type": "number",
+      "description": "Renders: the set $\\{1, 2\\}$ with its braces, and the superscripts $x^{2}$ and $10^{-3}$."
+    },
+    "structure": {
+      "type": "number",
+      "markdownDescription": "Renders: equations in Markdown structure.\n\n- a list item with $x^2$ and\n\n  $$\n  \\sqrt{x^2 + y^2}\n  $$\n\nDisplay math in a [link $$\\sum_i x_i$$](https://example.com) stays inline."
+    },
+    "ownHtml": {
+      "type": "number",
+      "markdownDescription": "Renders, but not centered: this description has its own <b>HTML</b>, so $$E = mc^2$$ stays a left-aligned Markdown image."
+    },
+    "markdownSet": {
+      "type": "number",
+      "markdownDescription": "Renders with braces: $\\{1, 2\\}$ alone reads like escaped plain text, but this paragraph also has $\\lbrace 1, 2 \\rbrace$, which does not."
+    },
+    "invalidTex": {
+      "type": "number",
+      "description": "Not rendered: an undefined command $\\notacommand{x}$ and an unclosed group $\\frac{1}{2$ remain source, while $y$ renders."
+    },
+    "unbalancedRight": {
+      "type": "number",
+      "description": "Not rendered: $f(x) = (a + b x^n\\right)$ has a \\right without \\left."
+    },
+    "textUnderscore": {
+      "type": "number",
+      "description": "Not rendered: $|g| < \\text{DAMP_REG_FAC} \\cdot r$ needs \\_ inside \\text."
+    },
+    "unsupportedPackages": {
+      "type": "number",
+      "description": "Not rendered: TikZ $\\begin{tikzpicture}\\draw (0,0) -- (1,1);\\end{tikzpicture}$ and $\\usepackage{siunitx}\\SI{3}{\\metre}$ are not available."
+    },
+    "duplicateLabel": {
+      "type": "number",
+      "description": "Partly rendered: $$a = 1 \\label{same}$$ renders, $$b = 2 \\label{same}$$ is a duplicate label and remains source."
+    },
+    "bracketDelimiters": {
+      "type": "number",
+      "markdownDescription": "Not rendered: \\(x^2\\) and \\[x^2\\] are not math delimiters."
+    },
+    "notMath": {
+      "type": "number",
+      "description": "Not rendered, by design: prices of $5 and $10, variables $HOME and $PATH, 5 $ or 10 $ and an unclosed $x stay text."
+    },
+    "notMathMarkdown": {
+      "type": "number",
+      "markdownDescription": "Not rendered, by design: an escaped \\$x\\$, code `$x$` and a link to https://example.com/$x$ keep their Markdown meaning."
+    },
+    "inlineAcrossLines": {
+      "type": "number",
+      "description": "Not rendered: an inline equation $a +\nb$ cannot span lines."
+    },
+    "outputBudget": {
+      "type": "number",
+      "description": "Partly rendered: equations render until the hover reaches its size budget, the rest such as the last one remain source. $x_{0}$ $x_{1}$ $x_{2}$ $x_{3}$ $x_{4}$ $x_{5}$ $x_{6}$ $x_{7}$ $x_{8}$ $x_{9}$ $x_{10}$ $x_{11}$ $x_{12}$ $x_{13}$ $x_{14}$ $x_{15}$ $x_{16}$ $x_{17}$ $x_{18}$ $x_{19}$ $x_{20}$ $x_{21}$ $x_{22}$ $x_{23}$ $x_{24}$ $x_{25}$ $x_{26}$ $x_{27}$ $x_{28}$ $x_{29}$ $x_{30}$ $x_{31}$ $x_{32}$ $x_{33}$ $x_{34}$ $x_{35}$ $x_{36}$ $x_{37}$ $x_{38}$ $x_{39}$ $x_{40}$ $x_{41}$ $x_{42}$ $x_{43}$ $x_{44}$ $x_{45}$ $x_{46}$ $x_{47}$ $x_{48}$ $x_{49}$ $x_{50}$ $x_{51}$ $x_{52}$ $x_{53}$ $x_{54}$ $x_{55}$ $x_{56}$ $x_{57}$ $x_{58}$ $x_{59}$ $x_{60}$ $x_{61}$ $x_{62}$ $x_{63}$ $x_{64}$ $x_{65}$ $x_{66}$ $x_{67}$ $x_{68}$ $x_{69}$"
+    },
+    "tooLarge": {
+      "type": "number",
+      "description": "Not rendered: this matrix is too large for a hover.\n\n$$\n\\begin{bmatrix}a_{00} & a_{01} & a_{02} & a_{03} & a_{04} & a_{05} & a_{06} & a_{07} & a_{08} & a_{09} & a_{010} & a_{011} & a_{012} & a_{013} & a_{014} & a_{015} & a_{016} & a_{017} & a_{018} & a_{019} & a_{020} & a_{021} & a_{022} & a_{023} & a_{024} & a_{025} & a_{026} & a_{027} & a_{028} & a_{029} \\\\ a_{10} & a_{11} & a_{12} & a_{13} & a_{14} & a_{15} & a_{16} & a_{17} & a_{18} & a_{19} & a_{110} & a_{111} & a_{112} & a_{113} & a_{114} & a_{115} & a_{116} & a_{117} & a_{118} & a_{119} & a_{120} & a_{121} & a_{122} & a_{123} & a_{124} & a_{125} & a_{126} & a_{127} & a_{128} & a_{129} \\\\ a_{20} & a_{21} & a_{22} & a_{23} & a_{24} & a_{25} & a_{26} & a_{27} & a_{28} & a_{29} & a_{210} & a_{211} & a_{212} & a_{213} & a_{214} & a_{215} & a_{216} & a_{217} & a_{218} & a_{219} & a_{220} & a_{221} & a_{222} & a_{223} & a_{224} & a_{225} & a_{226} & a_{227} & a_{228} & a_{229} \\\\ a_{30} & a_{31} & a_{32} & a_{33} & a_{34} & a_{35} & a_{36} & a_{37} & a_{38} & a_{39} & a_{310} & a_{311} & a_{312} & a_{313} & a_{314} & a_{315} & a_{316} & a_{317} & a_{318} & a_{319} & a_{320} & a_{321} & a_{322} & a_{323} & a_{324} & a_{325} & a_{326} & a_{327} & a_{328} & a_{329} \\\\ a_{40} & a_{41} & a_{42} & a_{43} & a_{44} & a_{45} & a_{46} & a_{47} & a_{48} & a_{49} & a_{410} & a_{411} & a_{412} & a_{413} & a_{414} & a_{415} & a_{416} & a_{417} & a_{418} & a_{419} & a_{420} & a_{421} & a_{422} & a_{423} & a_{424} & a_{425} & a_{426} & a_{427} & a_{428} & a_{429} \\\\ a_{50} & a_{51} & a_{52} & a_{53} & a_{54} & a_{55} & a_{56} & a_{57} & a_{58} & a_{59} & a_{510} & a_{511} & a_{512} & a_{513} & a_{514} & a_{515} & a_{516} & a_{517} & a_{518} & a_{519} & a_{520} & a_{521} & a_{522} & a_{523} & a_{524} & a_{525} & a_{526} & a_{527} & a_{528} & a_{529} \\\\ a_{60} & a_{61} & a_{62} & a_{63} & a_{64} & a_{65} & a_{66} & a_{67} & a_{68} & a_{69} & a_{610} & a_{611} & a_{612} & a_{613} & a_{614} & a_{615} & a_{616} & a_{617} & a_{618} & a_{619} & a_{620} & a_{621} & a_{622} & a_{623} & a_{624} & a_{625} & a_{626} & a_{627} & a_{628} & a_{629} \\\\ a_{70} & a_{71} & a_{72} & a_{73} & a_{74} & a_{75} & a_{76} & a_{77} & a_{78} & a_{79} & a_{710} & a_{711} & a_{712} & a_{713} & a_{714} & a_{715} & a_{716} & a_{717} & a_{718} & a_{719} & a_{720} & a_{721} & a_{722} & a_{723} & a_{724} & a_{725} & a_{726} & a_{727} & a_{728} & a_{729} \\\\ a_{80} & a_{81} & a_{82} & a_{83} & a_{84} & a_{85} & a_{86} & a_{87} & a_{88} & a_{89} & a_{810} & a_{811} & a_{812} & a_{813} & a_{814} & a_{815} & a_{816} & a_{817} & a_{818} & a_{819} & a_{820} & a_{821} & a_{822} & a_{823} & a_{824} & a_{825} & a_{826} & a_{827} & a_{828} & a_{829} \\\\ a_{90} & a_{91} & a_{92} & a_{93} & a_{94} & a_{95} & a_{96} & a_{97} & a_{98} & a_{99} & a_{910} & a_{911} & a_{912} & a_{913} & a_{914} & a_{915} & a_{916} & a_{917} & a_{918} & a_{919} & a_{920} & a_{921} & a_{922} & a_{923} & a_{924} & a_{925} & a_{926} & a_{927} & a_{928} & a_{929} \\\\ a_{100} & a_{101} & a_{102} & a_{103} & a_{104} & a_{105} & a_{106} & a_{107} & a_{108} & a_{109} & a_{1010} & a_{1011} & a_{1012} & a_{1013} & a_{1014} & a_{1015} & a_{1016} & a_{1017} & a_{1018} & a_{1019} & a_{1020} & a_{1021} & a_{1022} & a_{1023} & a_{1024} & a_{1025} & a_{1026} & a_{1027} & a_{1028} & a_{1029} \\\\ a_{110} & a_{111} & a_{112} & a_{113} & a_{114} & a_{115} & a_{116} & a_{117} & a_{118} & a_{119} & a_{1110} & a_{1111} & a_{1112} & a_{1113} & a_{1114} & a_{1115} & a_{1116} & a_{1117} & a_{1118} & a_{1119} & a_{1120} & a_{1121} & a_{1122} & a_{1123} & a_{1124} & a_{1125} & a_{1126} & a_{1127} & a_{1128} & a_{1129} \\\\ a_{120} & a_{121} & a_{122} & a_{123} & a_{124} & a_{125} & a_{126} & a_{127} & a_{128} & a_{129} & a_{1210} & a_{1211} & a_{1212} & a_{1213} & a_{1214} & a_{1215} & a_{1216} & a_{1217} & a_{1218} & a_{1219} & a_{1220} & a_{1221} & a_{1222} & a_{1223} & a_{1224} & a_{1225} & a_{1226} & a_{1227} & a_{1228} & a_{1229} \\\\ a_{130} & a_{131} & a_{132} & a_{133} & a_{134} & a_{135} & a_{136} & a_{137} & a_{138} & a_{139} & a_{1310} & a_{1311} & a_{1312} & a_{1313} & a_{1314} & a_{1315} & a_{1316} & a_{1317} & a_{1318} & a_{1319} & a_{1320} & a_{1321} & a_{1322} & a_{1323} & a_{1324} & a_{1325} & a_{1326} & a_{1327} & a_{1328} & a_{1329} \\\\ a_{140} & a_{141} & a_{142} & a_{143} & a_{144} & a_{145} & a_{146} & a_{147} & a_{148} & a_{149} & a_{1410} & a_{1411} & a_{1412} & a_{1413} & a_{1414} & a_{1415} & a_{1416} & a_{1417} & a_{1418} & a_{1419} & a_{1420} & a_{1421} & a_{1422} & a_{1423} & a_{1424} & a_{1425} & a_{1426} & a_{1427} & a_{1428} & a_{1429} \\\\ a_{150} & a_{151} & a_{152} & a_{153} & a_{154} & a_{155} & a_{156} & a_{157} & a_{158} & a_{159} & a_{1510} & a_{1511} & a_{1512} & a_{1513} & a_{1514} & a_{1515} & a_{1516} & a_{1517} & a_{1518} & a_{1519} & a_{1520} & a_{1521} & a_{1522} & a_{1523} & a_{1524} & a_{1525} & a_{1526} & a_{1527} & a_{1528} & a_{1529} \\\\ a_{160} & a_{161} & a_{162} & a_{163} & a_{164} & a_{165} & a_{166} & a_{167} & a_{168} & a_{169} & a_{1610} & a_{1611} & a_{1612} & a_{1613} & a_{1614} & a_{1615} & a_{1616} & a_{1617} & a_{1618} & a_{1619} & a_{1620} & a_{1621} & a_{1622} & a_{1623} & a_{1624} & a_{1625} & a_{1626} & a_{1627} & a_{1628} & a_{1629} \\\\ a_{170} & a_{171} & a_{172} & a_{173} & a_{174} & a_{175} & a_{176} & a_{177} & a_{178} & a_{179} & a_{1710} & a_{1711} & a_{1712} & a_{1713} & a_{1714} & a_{1715} & a_{1716} & a_{1717} & a_{1718} & a_{1719} & a_{1720} & a_{1721} & a_{1722} & a_{1723} & a_{1724} & a_{1725} & a_{1726} & a_{1727} & a_{1728} & a_{1729} \\\\ a_{180} & a_{181} & a_{182} & a_{183} & a_{184} & a_{185} & a_{186} & a_{187} & a_{188} & a_{189} & a_{1810} & a_{1811} & a_{1812} & a_{1813} & a_{1814} & a_{1815} & a_{1816} & a_{1817} & a_{1818} & a_{1819} & a_{1820} & a_{1821} & a_{1822} & a_{1823} & a_{1824} & a_{1825} & a_{1826} & a_{1827} & a_{1828} & a_{1829} \\\\ a_{190} & a_{191} & a_{192} & a_{193} & a_{194} & a_{195} & a_{196} & a_{197} & a_{198} & a_{199} & a_{1910} & a_{1911} & a_{1912} & a_{1913} & a_{1914} & a_{1915} & a_{1916} & a_{1917} & a_{1918} & a_{1919} & a_{1920} & a_{1921} & a_{1922} & a_{1923} & a_{1924} & a_{1925} & a_{1926} & a_{1927} & a_{1928} & a_{1929} \\\\ a_{200} & a_{201} & a_{202} & a_{203} & a_{204} & a_{205} & a_{206} & a_{207} & a_{208} & a_{209} & a_{2010} & a_{2011} & a_{2012} & a_{2013} & a_{2014} & a_{2015} & a_{2016} & a_{2017} & a_{2018} & a_{2019} & a_{2020} & a_{2021} & a_{2022} & a_{2023} & a_{2024} & a_{2025} & a_{2026} & a_{2027} & a_{2028} & a_{2029} \\\\ a_{210} & a_{211} & a_{212} & a_{213} & a_{214} & a_{215} & a_{216} & a_{217} & a_{218} & a_{219} & a_{2110} & a_{2111} & a_{2112} & a_{2113} & a_{2114} & a_{2115} & a_{2116} & a_{2117} & a_{2118} & a_{2119} & a_{2120} & a_{2121} & a_{2122} & a_{2123} & a_{2124} & a_{2125} & a_{2126} & a_{2127} & a_{2128} & a_{2129} \\\\ a_{220} & a_{221} & a_{222} & a_{223} & a_{224} & a_{225} & a_{226} & a_{227} & a_{228} & a_{229} & a_{2210} & a_{2211} & a_{2212} & a_{2213} & a_{2214} & a_{2215} & a_{2216} & a_{2217} & a_{2218} & a_{2219} & a_{2220} & a_{2221} & a_{2222} & a_{2223} & a_{2224} & a_{2225} & a_{2226} & a_{2227} & a_{2228} & a_{2229} \\\\ a_{230} & a_{231} & a_{232} & a_{233} & a_{234} & a_{235} & a_{236} & a_{237} & a_{238} & a_{239} & a_{2310} & a_{2311} & a_{2312} & a_{2313} & a_{2314} & a_{2315} & a_{2316} & a_{2317} & a_{2318} & a_{2319} & a_{2320} & a_{2321} & a_{2322} & a_{2323} & a_{2324} & a_{2325} & a_{2326} & a_{2327} & a_{2328} & a_{2329} \\\\ a_{240} & a_{241} & a_{242} & a_{243} & a_{244} & a_{245} & a_{246} & a_{247} & a_{248} & a_{249} & a_{2410} & a_{2411} & a_{2412} & a_{2413} & a_{2414} & a_{2415} & a_{2416} & a_{2417} & a_{2418} & a_{2419} & a_{2420} & a_{2421} & a_{2422} & a_{2423} & a_{2424} & a_{2425} & a_{2426} & a_{2427} & a_{2428} & a_{2429} \\\\ a_{250} & a_{251} & a_{252} & a_{253} & a_{254} & a_{255} & a_{256} & a_{257} & a_{258} & a_{259} & a_{2510} & a_{2511} & a_{2512} & a_{2513} & a_{2514} & a_{2515} & a_{2516} & a_{2517} & a_{2518} & a_{2519} & a_{2520} & a_{2521} & a_{2522} & a_{2523} & a_{2524} & a_{2525} & a_{2526} & a_{2527} & a_{2528} & a_{2529} \\\\ a_{260} & a_{261} & a_{262} & a_{263} & a_{264} & a_{265} & a_{266} & a_{267} & a_{268} & a_{269} & a_{2610} & a_{2611} & a_{2612} & a_{2613} & a_{2614} & a_{2615} & a_{2616} & a_{2617} & a_{2618} & a_{2619} & a_{2620} & a_{2621} & a_{2622} & a_{2623} & a_{2624} & a_{2625} & a_{2626} & a_{2627} & a_{2628} & a_{2629} \\\\ a_{270} & a_{271} & a_{272} & a_{273} & a_{274} & a_{275} & a_{276} & a_{277} & a_{278} & a_{279} & a_{2710} & a_{2711} & a_{2712} & a_{2713} & a_{2714} & a_{2715} & a_{2716} & a_{2717} & a_{2718} & a_{2719} & a_{2720} & a_{2721} & a_{2722} & a_{2723} & a_{2724} & a_{2725} & a_{2726} & a_{2727} & a_{2728} & a_{2729} \\\\ a_{280} & a_{281} & a_{282} & a_{283} & a_{284} & a_{285} & a_{286} & a_{287} & a_{288} & a_{289} & a_{2810} & a_{2811} & a_{2812} & a_{2813} & a_{2814} & a_{2815} & a_{2816} & a_{2817} & a_{2818} & a_{2819} & a_{2820} & a_{2821} & a_{2822} & a_{2823} & a_{2824} & a_{2825} & a_{2826} & a_{2827} & a_{2828} & a_{2829} \\\\ a_{290} & a_{291} & a_{292} & a_{293} & a_{294} & a_{295} & a_{296} & a_{297} & a_{298} & a_{299} & a_{2910} & a_{2911} & a_{2912} & a_{2913} & a_{2914} & a_{2915} & a_{2916} & a_{2917} & a_{2918} & a_{2919} & a_{2920} & a_{2921} & a_{2922} & a_{2923} & a_{2924} & a_{2925} & a_{2926} & a_{2927} & a_{2928} & a_{2929}\\end{bmatrix}\n$$"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+node_modules/
+out/
+dist/
+.vscode-test/
+package-lock.json
+.vscode-test-web/
+test/web/extensions/
+*.vsix

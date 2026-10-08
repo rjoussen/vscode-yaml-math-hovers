@@ -1,0 +1,36 @@
+# yaml-language-server: $schema=./math.schema.json
+# Hover over a key to see how its schema description renders.
+# Most descriptions are plain; energy, structure, ownHtml, markdownSet, bracketDelimiters and notMathMarkdown are Markdown.
+# Rendered
+energy: 1
+ratio: 1
+mode: 1
+maxwell: 1
+navierStokes: 1
+hooke: 1
+stiffnessMatrix: 1
+piecewise: 1
+macros: 1
+labels: 1
+chemistry: 1
+physics: 1
+diagram: 1
+longInline: 1
+padded: 1
+vonMises: 1
+sets: 1
+structure: 1
+ownHtml: 1
+markdownSet: 1
+# Not or only partly rendered, the equations remain source
+invalidTex: 1
+unbalancedRight: 1
+textUnderscore: 1
+unsupportedPackages: 1
+duplicateLabel: 1
+bracketDelimiters: 1
+notMath: 1
+notMathMarkdown: 1
+inlineAcrossLines: 1
+outputBudget: 1
+tooLarge: 1
