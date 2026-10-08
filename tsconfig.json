@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "lib": ["es2022", "WebWorker"],
+    "module": "Node16",
+    "moduleResolution": "Node16",
+    "outDir": "out",
+    "rootDir": ".",
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "es2022"
+  },
+  "include": ["src", "test"],
+  "exclude": ["test/web/extensions"]
+}

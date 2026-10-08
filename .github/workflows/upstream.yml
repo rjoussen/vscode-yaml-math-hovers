@@ -1,0 +1,16 @@
+name: Upstream
+
+# Tests against the latest YAML extension and language server, to notice upstream changes that break this extension.
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    uses: ./.github/workflows/ci.yml
+    with:
+      latest: true

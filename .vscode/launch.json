@@ -1,0 +1,18 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run with local YAML extension",
+      "type": "extensionHost",
+      "request": "launch",
+      // The YAML extension at ../vscode-yaml must be built from a branch with the hover transformer API.
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}",
+        "--extensionDevelopmentPath=${workspaceFolder}/../vscode-yaml",
+        "${workspaceFolder}/test/fixtures"
+      ],
+      "outFiles": ["${workspaceFolder}/dist/**/*.js", "${workspaceFolder}/../vscode-yaml/dist/**/*.js"],
+      "preLaunchTask": "npm: compile"
+    }
+  ]
+}
